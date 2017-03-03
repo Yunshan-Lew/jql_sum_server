@@ -4,4 +4,4 @@
 
 ## 相关技术
 
-<img src='./src/assets/express_mongodb.png' width='750' alt='相关技术'>
+<img src='./assets/express_mongodb.png' width='750' alt='相关技术'>
