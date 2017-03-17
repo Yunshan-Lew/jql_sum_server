@@ -70,6 +70,7 @@ var message_api = function(req, res){
 		
 		function updateTotal(date){
 			var totallist = db.collection('totallist');
+			totallist.ensureIndex({ eIndex: 1 });
 			
 			totallist.find({ "date": date }).toArray(function(err, result){
 				if(err){
@@ -78,8 +79,7 @@ var message_api = function(req, res){
 				}
 				if(typeof result[0] == 'undefined'){
 					var totalIndex = date.split('-')[0] + '年' + date.split('-')[1] + '月第' + Math.ceil(date.split('-')[2].replace(/^(0)/, '') / 7 ) + '周总结汇总';
-					var dateNumber = date.replace(/[^0-9]/g, '');
-					var intoTotal = { "totalIndex": totalIndex, "date": date, "dateNumber": dateNumber };
+					var intoTotal = { "totalIndex": totalIndex, "date": date };
 					
 					totallist.insert(intoTotal, function(err, result){
 						if(err){

@@ -9,12 +9,13 @@ var totallist_api = function(req, res){
 		var page = req.body.page;
 		var collection = db.collection('totallist');
 		
-	collection.find().sort({ "dateNumber": -1 }).toArray(function(err, result){
+		collection.find().sort({ "date": -1 }).toArray(function(err, result){
 			if(err){
 				console.log('Error:' + err);
 				return;
 			}
 			result.forEach(function(item, i){
+				// 按照 React 的规范，dataSource和columns里的数据值都需要指定key值
 				item.key = i;
 			});
 			var response = { };
