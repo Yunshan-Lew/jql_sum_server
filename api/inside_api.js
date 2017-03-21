@@ -17,7 +17,6 @@ var inside_api = function(req, res){
 			}
 			result.forEach(function(item, i){
 				item.key = i;
-				item.dateNumber = dateNumber;
 			});
 			var response = { };
 			response.code = "1";
