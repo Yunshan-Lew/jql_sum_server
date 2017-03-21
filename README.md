@@ -8,10 +8,19 @@
 
 ## 建立数据库和用户集合
 
-### 在C:\program files\mongodb\server\2.6\bin里运行以下命令
+#### 在C:\program files\mongodb\server\2.6\bin里运行以下命令
 
 ```sh
 mongo
 use jql_sum
 db.users.insert({ user: "Alice", password: "Alice", job: "worker" })
+```
+
+## 后台服务的安装与启动
+
+#### 在项目文件夹里运行以下命令
+
+```sh
+npm install
+node app
 ```
