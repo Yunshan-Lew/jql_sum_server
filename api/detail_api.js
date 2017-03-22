@@ -9,6 +9,10 @@ var detail_api = function(req, res){
 		var dateNumber = req.body.dateNumber;
 		var date = dateNumber.slice(0, 4) + '-' + dateNumber.slice(4, 6) + '-' + dateNumber.slice(6);
 		var _id = req.body._id;
+		// 防止_id参数获取出错或被篡改
+		if(_id.length !== 24){
+			_id = '111111111111111111111111';
+		}
 		var collection = db.collection('summary');
 		
 		collection.find({ "date": date, "_id": ObjectId(_id) }).toArray(function(err, result){

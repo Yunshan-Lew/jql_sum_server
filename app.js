@@ -11,6 +11,7 @@ var message_api = require('./api/message_api');
 var totallist_api = require('./api/totallist_api');
 var inside_api = require('./api/inside_api');
 var detail_api = require('./api/detail_api');
+var edit_api = require('./api/edit_api');
 
 // 设置跨域访问
 app.all('*', function(req, res, next) {
@@ -39,6 +40,9 @@ app.post('/inside', inside_api);
 
 // 定义总结详情接口
 app.post('/detail', detail_api);
+
+// 定义总结修改接口
+app.post('/edit', edit_api);
 
 // 配置服务器端口
 var server = app.listen(3337, function(){
