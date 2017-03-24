@@ -12,6 +12,8 @@ var totallist_api = require('./api/totallist_api');
 var inside_api = require('./api/inside_api');
 var detail_api = require('./api/detail_api');
 var edit_api = require('./api/edit_api');
+var share_api = require('./api/share_api');
+var techshare_api = require('./api/techshare_api');
 
 // 设置跨域访问
 app.all('*', function(req, res, next) {
@@ -43,6 +45,12 @@ app.post('/detail', detail_api);
 
 // 定义总结修改接口
 app.post('/edit', edit_api);
+
+// 定义分享提交接口
+app.post('/share', share_api);
+
+// 定义获取分享接口
+app.post('/techshare', techshare_api);
 
 // 配置服务器端口
 var server = app.listen(3337, function(){
