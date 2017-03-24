@@ -7,7 +7,8 @@ var inside_api = function(req, res){
 	var findData = function(db, callback){
 		var dateNumber = req.body.dateNumber;
 		var date = dateNumber.slice(0, 4) + '-' + dateNumber.slice(4, 6) + '-' + dateNumber.slice(6);
-		var page = req.body.page;
+		var current = req.body.current;
+		var pageSize = req.body.pageSize;
 		var collection = db.collection('summary');
 		
 		collection.find({ "date": date }, { "thisWeek": 0, "nextWeek": 0 }).toArray(function(err, result){
@@ -20,7 +21,7 @@ var inside_api = function(req, res){
 			});
 			var response = { };
 			response.code = "1";
-			response.results = result.slice( ( page - 1 ) * 10, page * 10 );
+			response.results = result.slice( ( current - 1 ) * pageSize, current * pageSize );
 			response.total = result.length;
 			callback(response);
 		});

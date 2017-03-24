@@ -6,7 +6,8 @@ var ObjectId = mongodb.ObjectId;
 
 var totallist_api = function(req, res){
 	var findData = function(db, callback){
-		var page = req.body.page;
+		var current = req.body.current;
+		var pageSize = req.body.pageSize;
 		var collection = db.collection('totallist');
 		
 		collection.find().sort({ "date": -1 }).toArray(function(err, result){
@@ -20,7 +21,7 @@ var totallist_api = function(req, res){
 			});
 			var response = { };
 			response.code = "1";
-			response.results = result.slice( ( page - 1 ) * 10, page * 10 );
+			response.results = result.slice( ( current - 1 ) * pageSize, current * pageSize );
 			response.total = result.length;
 			callback(response);
 		});
