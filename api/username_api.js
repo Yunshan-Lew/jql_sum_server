@@ -8,7 +8,7 @@ var username_api = function(req, res){
 	//拿到数据后到数据库中查询
 	var findData = function(db, callback){
 		var token = req.body.token;
-		if(token.length !== 24){
+		if(typeof token == 'undefined' || token.length !== 24){
 			token = '111111111111111111111111';
 		}
 		var searchStr = { "_id": ObjectId(token) };

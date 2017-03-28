@@ -7,7 +7,7 @@ var ObjectId = mongodb.ObjectId;
 var techshare_api = function(req, res){
 	var pullDate = function(db, callback){
 		var token = req.body.token;
-		if(token.length !== 24){
+		if(typeof token == 'undefined' || token.length !== 24){
 			token = '111111111111111111111111';
 		}
 		var collection = db.collection('users');

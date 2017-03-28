@@ -15,6 +15,7 @@ var edit_api = require('./api/edit_api');
 var share_api = require('./api/share_api');
 var techshare_api = require('./api/techshare_api');
 var like_api = require('./api/like_api');
+var password_api = require('./api/password_api');
 
 // 设置跨域访问
 app.all('*', function(req, res, next) {
@@ -55,6 +56,9 @@ app.post('/techshare', techshare_api);
 
 // 定义点赞接口
 app.post('/like', like_api);
+
+// 定义修改密码接口
+app.post('/password', password_api);
 
 // 配置服务器端口
 var server = app.listen(3337, function(){

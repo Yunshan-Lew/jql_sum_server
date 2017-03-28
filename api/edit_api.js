@@ -7,7 +7,7 @@ var ObjectId = mongodb.ObjectId;
 var edit_api = function(req, res){
 	var addData = function(db, callback){
 		var token = req.body.token;
-		if(token.length !== 24){
+		if(typeof token == 'undefined' || token.length !== 24){
 			token = '111111111111111111111111';
 		}
 		var thisWeek = req.body.thisWeek;

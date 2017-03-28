@@ -7,11 +7,11 @@ var ObjectId = mongodb.ObjectId;
 var like_api = function(req, res){
 	var addData = function(db, callback){
 		var token = req.body.token;
-		if(token.length !== 24){
+		if(typeof token == 'undefined' || token.length !== 24){
 			token = '111111111111111111111111';
 		}
 		var share_id = req.body.share_id;
-		if(share_id.length !== 24){
+		if(typeof share_id == 'undefined' || share_id.length !== 24){
 			share_id = '111111111111111111111111';
 		}
 		var collection = db.collection('users');
