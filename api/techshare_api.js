@@ -6,7 +6,10 @@ var ObjectId = mongodb.ObjectId;
 
 var techshare_api = function(req, res){
 	var pullDate = function(db, callback){
+		var target = req.body.target;
+		var pageSize = req.body.pageSize;
 		var token = req.body.token;
+		
 		if(typeof token == 'undefined' || token.length !== 24){
 			token = '111111111111111111111111';
 		}
@@ -30,15 +33,16 @@ var techshare_api = function(req, res){
 		
 		function getShare(username){
 			var collection = db.collection('tech_share');
-		
-			collection.find({ }).sort({ "date": -1 }).toArray(function(err, result){
+			
+			// 跳过前面页数，限制给定每页数量
+			collection.find({ }).sort({ "date": -1 }).skip( ( target - 1 ) * pageSize ).limit( parseInt( pageSize ) ).toArray(function(err, result){
 				if(err){
 					console.log('Error:' + err);
 					return;
 				}
 				result.forEach(function(item, i){
 					// 按照 React 的规范，dataSource和columns里的数据值都需要指定key值
-					item.key = i;
+					item.key = i + ( target - 1 ) * pageSize ;
 					
 					// 喜欢人数
 					var fans = item.like.split('&&');
@@ -46,8 +50,8 @@ var techshare_api = function(req, res){
 					
 					// 是否有当前用户
 					var isFans = false;
-					fans.forEach(function(item){
-						if(item == username)isFans = true;
+					fans.forEach(function(name){
+						if(name == username)isFans = true;
 					});
 					item.isFans = isFans;
 				});
