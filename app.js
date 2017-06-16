@@ -6,6 +6,7 @@ app.use(bodyParder.urlencoded({ extended: true }));
 
 // 引入api
 var login_api = require('./api/login_api');
+var register_api = require('./api/register_api');
 var username_api = require('./api/username_api');
 var message_api = require('./api/message_api');
 var totallist_api = require('./api/totallist_api');
@@ -30,6 +31,9 @@ app.all('*', function(req, res, next) {
 
 // 定义登录的接口
 app.post('/login', login_api);
+
+// 定义注册接口
+app.post('/register', register_api);
 
 // 定义获取用户名接口
 app.post('/username', username_api);
